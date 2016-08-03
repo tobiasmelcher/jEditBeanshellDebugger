@@ -18,5 +18,6 @@
         <file path="/bshdebugger/.classpath"/>
         <file path="/bshdebugger/actions.xml"/>
         <file path="/bshdebugger/dockables.xml"/>
+        <file path="/bshdebugger/services.xml"/>
     </selectedElements>
 </jardesc>

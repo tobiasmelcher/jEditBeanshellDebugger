@@ -17,14 +17,14 @@ plugin.bshdebugger.BshDebugPlugin.menu=\
     bshdebugger.togglebreakpoint-action   
         
 bshdebugger.openview-action.label=Open Beanshell Debug View
-bshdebugger.togglebreakpoint-action.label=Toggle Beanshell Breakpoint
+bshdebugger.togglebreakpoint-action.label=Toggle $Beanshell Breakpoint
+# how to define shortcut inside plugin
+bshdebugger.togglebreakpoint-action.shortcut=A+b
 
 bshdebugger.debugview.title=BSH Debug View
 bshdebugger.debugview.longtitle=Beanshell Debug View
 bshdebugger.debugview.label=BSH Debug View
 
-# how to define shortcut inside plugin?
-#bshdebugger.togglebreakpoint-action.shortcut=A+b
 
 plugin.bshdebugger.BshDebugPlugin.option-group=bshdebugger.general
 options.bshdebugger.general.label=General

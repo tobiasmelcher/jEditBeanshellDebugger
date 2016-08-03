@@ -7,9 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.gjt.sp.jedit.BeanShell;
-import org.gjt.sp.jedit.EditAction;
 import org.gjt.sp.jedit.EditPlugin;
-import org.gjt.sp.jedit.jEdit;
 
 import bshdebugger.options.OptionPane;
 
@@ -24,17 +22,6 @@ public class BshDebugPlugin extends EditPlugin {
 		replaceJeditBSHBlockClass(); // at this point in time BSHBlock class is
 										// not yet loaded and therefore we can
 										// replace it
-		// context menu
-		String name = "view.context";
-		String menuItems = jEdit.getProperty(name);
-		if (menuItems.contains("bshdebugger.togglebreakpoint-action") == false)
-			jEdit.setProperty(name, menuItems + " bshdebugger.togglebreakpoint-action");
-
-		EditAction action = jEdit.getAction("bshdebugger.togglebreakpoint-action");
-		String shortcut = jEdit.getProperty("bshdebugger.togglebreakpoint-action.shortcut");
-		if (shortcut==null || shortcut.length()==0) {
-			jEdit.getInputHandler().addKeyBinding("A+b", action);
-		}
 	}
 
 	@Override
