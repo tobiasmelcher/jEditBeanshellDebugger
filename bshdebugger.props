@@ -1,0 +1,31 @@
+plugin.bshdebugger.BshDebugPlugin.name=Beanshell Debugger
+plugin.bshdebugger.BshDebugPlugin.author=Tobias Melcher
+plugin.bshdebugger.BshDebugPlugin.version=0.1
+plugin.bshdebugger.BshDebugPlugin.activate=startup
+plugin.bshdebugger.BshDebugPlugin.description=Beanshell Debugger Description
+
+# dependencies
+plugin.bshdebugger.BshDebugPlugin.depend.0=jdk 1.6
+plugin.bshdebugger.BshDebugPlugin.depend.1=jedit 05.00.99.00
+
+# docs
+#plugin.bshdebugger.BshDebugPlugin.docs=index.html
+
+bshdebugger.title=BeanshellDebugger
+plugin.bshdebugger.BshDebugPlugin.menu=\
+    bshdebugger.openview-action \
+    bshdebugger.togglebreakpoint-action   
+        
+bshdebugger.openview-action.label=Open Beanshell Debug View
+bshdebugger.togglebreakpoint-action.label=Toggle Beanshell Breakpoint
+
+bshdebugger.debugview.title=BSH Debug View
+bshdebugger.debugview.longtitle=Beanshell Debug View
+bshdebugger.debugview.label=BSH Debug View
+
+# how to define shortcut inside plugin?
+#bshdebugger.togglebreakpoint-action.shortcut=A+b
+
+plugin.bshdebugger.BshDebugPlugin.option-group=bshdebugger.general
+options.bshdebugger.general.label=General
+options.bshdebugger.general.code=new bshdebugger.options.OptionPane();

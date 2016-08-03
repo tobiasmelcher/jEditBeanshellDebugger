@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Created-By: Tobias Melcher
+AppName: bshdebugger
+AppVersion: 0.1
+Author: Tobias Melcher
+

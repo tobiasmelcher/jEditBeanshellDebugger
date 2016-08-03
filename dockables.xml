@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE DOCKABLES SYSTEM "dockables.dtd">
+
+<DOCKABLES>
+	<DOCKABLE NAME="bshdebugger.debugview" MOVABLE="TRUE">
+		new bshdebugger.DebuggerView(view);
+	</DOCKABLE>
+</DOCKABLES>
