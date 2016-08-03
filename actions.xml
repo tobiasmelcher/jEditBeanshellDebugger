@@ -14,4 +14,16 @@
         </CODE>
     </ACTION>
     
+    <ACTION NAME="bshdebugger.stepinto-action">
+        <CODE>
+            bshdebugger.DebuggerView.doStep();
+        </CODE>
+    </ACTION>
+    
+    <ACTION NAME="bshdebugger.continue-action">
+        <CODE>
+            bshdebugger.DebuggerView.doContinue();
+        </CODE>
+    </ACTION>
+    
 </ACTIONS>

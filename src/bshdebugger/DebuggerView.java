@@ -28,7 +28,6 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
 
 import org.gjt.sp.jedit.Buffer;
-import org.gjt.sp.jedit.EditAction;
 import org.gjt.sp.jedit.View;
 import org.gjt.sp.jedit.jEdit;
 import org.gjt.sp.jedit.bsh.CallStack;
@@ -63,23 +62,11 @@ public class DebuggerView extends JPanel {
 				doStep();
 			}
 		});
-		jEdit.getInputHandler().addKeyBinding("F6", new EditAction("bshdebugger.step") {
-			@Override
-			public void invoke(View view) {
-				doStep();
-			}
-		});
 		JButton cont = new JButton("continue");
 		cont.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				doContinue();
-			}
-		});
-		jEdit.getInputHandler().addKeyBinding("F8", new EditAction("bshdebugger.continue") {
-			@Override
-			public void invoke(View view) {
 				doContinue();
 			}
 		});
@@ -352,12 +339,12 @@ public class DebuggerView extends JPanel {
 		area.repaint();
 	}
 
-	private void doStep() {
+	private static void doStep() {
 		doWaitForStep = false;
 		stepping = true;
 	}
 
-	private void doContinue() {
+	private static void doContinue() {
 		doWaitForStep = false;
 		stepping = false;
 	}
