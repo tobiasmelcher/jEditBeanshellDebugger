@@ -14,7 +14,8 @@ plugin.bshdebugger.BshDebugPlugin.depend.1=jedit 05.00.99.00
 bshdebugger.title=BeanshellDebugger
 plugin.bshdebugger.BshDebugPlugin.menu=\
     bshdebugger.openview-action \
-    bshdebugger.togglebreakpoint-action   
+    bshdebugger.togglebreakpoint-action \
+    bshdebugger.compile_beanshell-action   
         
 bshdebugger.openview-action.label=Open Beanshell Debug View
 bshdebugger.togglebreakpoint-action.label=Toggle $Beanshell Breakpoint
@@ -23,6 +24,7 @@ bshdebugger.togglebreakpoint-action.shortcut=A+b
 
 bshdebugger.stepinto-action.label=Step Into
 bshdebugger.continue-action.label=Continue
+bshdebugger.compile_beanshell-action.label=Compile Beanshell
 
 bshdebugger.debugview.title=BSH Debug View
 bshdebugger.debugview.longtitle=Beanshell Debug View
