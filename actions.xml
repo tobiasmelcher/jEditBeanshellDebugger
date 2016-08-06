@@ -26,4 +26,10 @@
         </CODE>
     </ACTION>
     
+    <ACTION NAME="bshdebugger.compile_beanshell-action">
+        <CODE>
+            bshdebugger.compiler.CompileBeanshell.run();
+        </CODE>
+    </ACTION>
+    
 </ACTIONS>
