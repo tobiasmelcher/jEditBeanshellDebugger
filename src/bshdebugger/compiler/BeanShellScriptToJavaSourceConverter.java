@@ -17,6 +17,7 @@ import org.gjt.sp.jedit.ActionSet;
 import org.gjt.sp.jedit.BeanShell;
 import org.gjt.sp.jedit.Buffer;
 import org.gjt.sp.jedit.EditAction;
+import org.gjt.sp.jedit.Macros.Macro;
 import org.gjt.sp.jedit.PluginJAR;
 import org.gjt.sp.jedit.View;
 import org.gjt.sp.jedit.jEdit;
@@ -226,44 +227,47 @@ public class BeanShellScriptToJavaSourceConverter {
 			DefaultInputHandler dh = (DefaultInputHandler) jEdit.getActiveView().getInputHandler();
 			Field f = AbstractInputHandler.class.getDeclaredField("currentBindings");
 			f.setAccessible(true);
-			Hashtable bindings = (Hashtable) f.get(dh);
+			Hashtable<?,?> bindings = (Hashtable<?,?>) f.get(dh);
 			for (Object key : bindings.keySet()) {
 				Object value = bindings.get(key);
 				if (value instanceof String) {
 					String v = (String) value;
 					int idx = v.indexOf("°");
-					if (idx>0) {
-						v = v.substring(0,idx);
+					if (idx > 0) {
+						v = v.substring(0, idx);
 					}
 					final String originMacroName = v;
 					v = v.replace("\\", "_");
 					v = v.replace("/", "_");
 					if (v.equals(macroName)) {
-						String newMacroName = originMacroName + "°" + System.currentTimeMillis();
-						ActionSet set = jEdit.getActionContext().getActionSetForAction((String) value);
-						set.addAction(new EditAction(newMacroName) {
+						ActionSet set = jEdit.getActionContext().getActionSetForAction(originMacroName);
+						EditAction action = set.getAction(originMacroName);
+						if (action instanceof Macro) {
+							final EditAction originAction = action;
+							set.removeAction(originMacroName);
+							set.addAction(new EditAction(originMacroName) {
 
-							@Override
-							public void invoke(View view) {
-								//TODO: after changing and saving macro, this will no longer work - reason actions are all removed and newly created - the temporary action does then no longer exist
-								long bshModified = new File(macroFilePath).lastModified();
-								long classModified = classFileName.lastModified();
-								if (classModified >= bshModified) {
-									String classFolder = getTempBshDebuggerFolder().getAbsolutePath();
-									classFolder=classFolder.replace("\\", "\\\\");
-									StringBuilder source = new StringBuilder();
-									source.append("if (getClass(\"" + macroName + "\")==null) {\n");
-									source.append( "	addClassPath(\""+classFolder+"\");\n");
-									source.append( "	reloadClasses(\""+macroName+"\");\n" ); 
-									source.append("}\n"); 
-									source.append("new " + macroName + "().m1();");
-									BeanShell.eval(jEdit.getActiveView(), BeanShell.getNameSpace(), source.toString());
-								} else {
-									jEdit.getAction(originMacroName).invoke(jEdit.getActiveView());
+								@Override
+								public void invoke(View view) {
+									long bshModified = new File(macroFilePath).lastModified();
+									long classModified = classFileName.lastModified();
+									if (classModified >= bshModified) {
+										String classFolder = getTempBshDebuggerFolder().getAbsolutePath();
+										classFolder = classFolder.replace("\\", "\\\\");
+										StringBuilder source = new StringBuilder();
+										source.append("if (getClass(\"" + macroName + "\")==null) {\n");
+										source.append("	addClassPath(\"" + classFolder + "\");\n");
+										source.append("	reloadClasses(\"" + macroName + "\");\n");
+										source.append("}\n");
+										source.append("new " + macroName + "().m1();");
+										BeanShell.eval(jEdit.getActiveView(), BeanShell.getNameSpace(),
+												source.toString());
+									} else {
+										originAction.invoke(jEdit.getActiveView());
+									}
 								}
-							}
-						});
-						bindings.put(key, newMacroName);
+							});
+						}
 						return;
 					}
 				}
